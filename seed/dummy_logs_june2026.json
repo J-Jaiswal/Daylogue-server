@@ -1,0 +1,562 @@
+[
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-01",
+    "sleep": { "bedTime": "23:15", "wakeTime": "06:45", "durationMinutes": 450, "quality": 4 },
+    "workouts": [
+      {
+        "timeOfDay": "evening",
+        "exercises": [
+          { "name": "Squat", "type": "sets_reps", "sets": 4, "reps": 6 },
+          { "name": "Walking lunges", "type": "sets_reps", "sets": 3, "reps": 12 },
+          { "name": "Calf raises", "type": "sets_reps", "sets": 3, "reps": 15 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Oats with banana", "amount": "1 bowl" }, { "name": "Boiled egg", "amount": "2" }] },
+      { "category": "lunch", "items": [{ "name": "Chicken curry", "amount": "1 bowl" }, { "name": "Rice", "amount": "1 cup" }] },
+      { "category": "dinner", "items": [{ "name": "Paneer sabzi", "amount": "1 bowl" }, { "name": "Chapati", "amount": "2" }] }
+    ],
+    "mood": 4,
+    "aiDailySuggestion": "[{\"category\":\"sleep\",\"suggestion\":\"Excellent consistency—keep bedtime within a 30-min window.\"},{\"category\":\"workout\",\"suggestion\":\"Great leg session. Consider adding hip hinges next week.\"},{\"category\":\"diet\",\"suggestion\":\"Solid protein intake. Stay hydrated post workout.\"}]",
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-02",
+    "sleep": { "bedTime": "23:40", "wakeTime": "07:10", "durationMinutes": 450, "quality": 3 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Greek yogurt", "amount": "1 cup" }, { "name": "Granola", "amount": "30g" }] },
+      { "category": "lunch", "items": [{ "name": "Dal rice", "amount": "1 plate" }] },
+      { "category": "snacks", "items": [{ "name": "Mixed fruit", "amount": "2 pieces" }] },
+      { "category": "dinner", "items": [{ "name": "Grilled fish", "amount": "150g" }, { "name": "Salad", "amount": "1 bowl" }] }
+    ],
+    "mood": 3,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-03",
+    "sleep": { "bedTime": "22:55", "wakeTime": "06:30", "durationMinutes": 455, "quality": 5 },
+    "workouts": [
+      {
+        "timeOfDay": "morning",
+        "exercises": [
+          { "name": "Push-ups", "type": "sets_reps", "sets": 4, "reps": 12 },
+          { "name": "Dumbbell shoulder press", "type": "sets_reps", "sets": 3, "reps": 10 },
+          { "name": "Plank", "type": "duration", "durationMinutes": 5 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Scrambled eggs", "amount": "3" }, { "name": "Whole wheat toast", "amount": "2 slices" }] },
+      { "category": "lunch", "items": [{ "name": "Tuna sandwich", "amount": "1" }] },
+      { "category": "dinner", "items": [{ "name": "Chicken curry", "amount": "1 bowl" }, { "name": "Roti", "amount": "2" }] }
+    ],
+    "mood": 5,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-04",
+    "sleep": { "bedTime": "00:10", "wakeTime": "07:20", "durationMinutes": 430, "quality": 2 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Poha", "amount": "1 bowl" }] },
+      { "category": "junk_food", "items": [{ "name": "Burger", "amount": "1" }, { "name": "Fries", "amount": "1 small" }] },
+      { "category": "dinner", "items": [{ "name": "Maggi", "amount": "1 pack" }] }
+    ],
+    "mood": 2,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-05",
+    "sleep": { "bedTime": "23:05", "wakeTime": "06:35", "durationMinutes": 450, "quality": 4 },
+    "workouts": [
+      {
+        "timeOfDay": "evening",
+        "exercises": [
+          { "name": "Deadlift", "type": "sets_reps", "sets": 4, "reps": 5 },
+          { "name": "Bent-over rows", "type": "sets_reps", "sets": 3, "reps": 10 },
+          { "name": "Face pulls", "type": "sets_reps", "sets": 3, "reps": 15 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Protein shake", "amount": "1 scoop" }, { "name": "Banana", "amount": "1" }] },
+      { "category": "lunch", "items": [{ "name": "Rice and dal", "amount": "1 plate" }, { "name": "Curd", "amount": "1 bowl" }] },
+      { "category": "dinner", "items": [{ "name": "Grilled fish", "amount": "200g" }, { "name": "Steamed broccoli", "amount": "1 cup" }] }
+    ],
+    "mood": 4,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-06",
+    "sleep": { "bedTime": "23:30", "wakeTime": "07:00", "durationMinutes": 450, "quality": 4 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Idli", "amount": "3" }, { "name": "Sambar", "amount": "1 bowl" }] },
+      { "category": "lunch", "items": [{ "name": "Vegetable biryani", "amount": "1 plate" }] },
+      { "category": "cheat_meal", "items": [{ "name": "Pizza", "amount": "2 slices" }] }
+    ],
+    "mood": 3,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-07",
+    "sleep": { "bedTime": "22:45", "wakeTime": "06:20", "durationMinutes": 455, "quality": 5 },
+    "workouts": [
+      {
+        "timeOfDay": "morning",
+        "exercises": [
+          { "name": "Cycling", "type": "duration", "durationMinutes": 35 },
+          { "name": "Abs circuit", "type": "duration", "durationMinutes": 10 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Oats", "amount": "1 bowl" }, { "name": "Milk", "amount": "1 glass" }] },
+      { "category": "lunch", "items": [{ "name": "Rajma rice", "amount": "1 plate" }] },
+      { "category": "snacks", "items": [{ "name": "Apple", "amount": "1" }, { "name": "Almonds", "amount": "10" }] },
+      { "category": "dinner", "items": [{ "name": "Chicken soup", "amount": "1 bowl" }, { "name": "Brown bread", "amount": "2 slices" }] }
+    ],
+    "mood": 5,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-08",
+    "sleep": { "bedTime": "23:20", "wakeTime": "06:55", "durationMinutes": 455, "quality": 4 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Curd with fruits", "amount": "1 bowl" }] },
+      { "category": "lunch", "items": [{ "name": "Dal makhani", "amount": "1 bowl" }, { "name": "Roti", "amount": "2" }] },
+      { "category": "dinner", "items": [{ "name": "Egg bhurji", "amount": "1 plate" }, { "name": "Paratha", "amount": "1" }] }
+    ],
+    "mood": 3,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-09",
+    "sleep": { "bedTime": "23:00", "wakeTime": "06:40", "durationMinutes": 460, "quality": 4 },
+    "workouts": [
+      {
+        "timeOfDay": "evening",
+        "exercises": [
+          { "name": "Bench press", "type": "sets_reps", "sets": 4, "reps": 8 },
+          { "name": "Incline dumbbell press", "type": "sets_reps", "sets": 3, "reps": 10 },
+          { "name": "Shoulder press", "type": "sets_reps", "sets": 3, "reps": 10 },
+          { "name": "Tricep pushdown", "type": "sets_reps", "sets": 3, "reps": 12 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Boiled eggs", "amount": "3" }, { "name": "Avocado toast", "amount": "1 slice" }] },
+      { "category": "lunch", "items": [{ "name": "Chicken wrap", "amount": "1" }] },
+      { "category": "snacks", "items": [{ "name": "Protein bar", "amount": "1" }] },
+      { "category": "dinner", "items": [{ "name": "Khichdi", "amount": "1 bowl" }, { "name": "Pickle", "amount": "1 tsp" }] }
+    ],
+    "mood": 4,
+    "aiDailySuggestion": "[{\"category\":\"sleep\",\"suggestion\":\"Maintain your current sleep schedule—it's working well.\"},{\"category\":\"workout\",\"suggestion\":\"Strong chest day. Ensure adequate recovery before next push session.\"},{\"category\":\"diet\",\"suggestion\":\"Good protein spread throughout the day.\"}]",
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-10",
+    "sleep": { "bedTime": "00:05", "wakeTime": "07:15", "durationMinutes": 430, "quality": 2 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Cereal", "amount": "1 bowl" }, { "name": "Milk", "amount": "1 glass" }] },
+      { "category": "junk_food", "items": [{ "name": "Samosa", "amount": "2" }, { "name": "Fries", "amount": "1 box" }] },
+      { "category": "dinner", "items": [{ "name": "Leftover rice and dal", "amount": "1 plate" }] }
+    ],
+    "mood": 2,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-11",
+    "sleep": { "bedTime": "22:50", "wakeTime": "06:30", "durationMinutes": 460, "quality": 5 },
+    "workouts": [
+      {
+        "timeOfDay": "morning",
+        "exercises": [
+          { "name": "Walking lunges", "type": "sets_reps", "sets": 3, "reps": 12 },
+          { "name": "Goblet squat", "type": "sets_reps", "sets": 3, "reps": 10 },
+          { "name": "Jog", "type": "duration", "durationMinutes": 18 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Paneer paratha", "amount": "2" }, { "name": "Curd", "amount": "1 bowl" }] },
+      { "category": "lunch", "items": [{ "name": "Chole rice", "amount": "1 plate" }] },
+      { "category": "dinner", "items": [{ "name": "Paneer salad", "amount": "1 bowl" }, { "name": "Whole wheat bread", "amount": "2 slices" }] }
+    ],
+    "mood": 5,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-12",
+    "sleep": { "bedTime": "23:10", "wakeTime": "06:45", "durationMinutes": 455, "quality": 4 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Green smoothie", "amount": "1 large glass" }] },
+      { "category": "lunch", "items": [{ "name": "Veg pulao", "amount": "1 plate" }, { "name": "Raita", "amount": "1 small bowl" }] },
+      { "category": "snacks", "items": [{ "name": "Walnuts", "amount": "10" }] },
+      { "category": "dinner", "items": [{ "name": "Moong dal soup", "amount": "1 bowl" }, { "name": "Roti", "amount": "1" }] }
+    ],
+    "mood": 3,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-13",
+    "sleep": { "bedTime": "23:35", "wakeTime": "07:05", "durationMinutes": 450, "quality": 4 },
+    "workouts": [
+      {
+        "timeOfDay": "afternoon",
+        "exercises": [
+          { "name": "Swimming", "type": "duration", "durationMinutes": 30 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Upma", "amount": "1 bowl" }] },
+      { "category": "lunch", "items": [{ "name": "Grilled chicken sandwich", "amount": "1" }] },
+      { "category": "cheat_meal", "items": [{ "name": "Biryani", "amount": "1 plate" }] }
+    ],
+    "mood": 4,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-14",
+    "sleep": { "bedTime": "22:40", "wakeTime": "06:25", "durationMinutes": 465, "quality": 5 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Omelette", "amount": "2 eggs" }, { "name": "Toast", "amount": "2 slices" }] },
+      { "category": "lunch", "items": [{ "name": "Dal, rice, vegetables", "amount": "1 plate" }] },
+      { "category": "snacks", "items": [{ "name": "Mixed nuts", "amount": "1 handful" }] },
+      { "category": "dinner", "items": [{ "name": "Grilled paneer", "amount": "150g" }, { "name": "Salad", "amount": "1 bowl" }] }
+    ],
+    "mood": 5,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-15",
+    "sleep": { "bedTime": "23:25", "wakeTime": "07:00", "durationMinutes": 455, "quality": 4 },
+    "workouts": [
+      {
+        "timeOfDay": "evening",
+        "exercises": [
+          { "name": "Pull-ups", "type": "sets_reps", "sets": 4, "reps": 7 },
+          { "name": "Lat pulldown", "type": "sets_reps", "sets": 3, "reps": 10 },
+          { "name": "Seated cable rows", "type": "sets_reps", "sets": 3, "reps": 12 },
+          { "name": "Bicep curl", "type": "sets_reps", "sets": 3, "reps": 12 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Poha", "amount": "1 bowl" }, { "name": "Chai", "amount": "1 cup" }] },
+      { "category": "lunch", "items": [{ "name": "Rajma chawal", "amount": "1 plate" }] },
+      { "category": "dinner", "items": [{ "name": "Chicken tikka", "amount": "200g" }, { "name": "Mint chutney", "amount": "2 tbsp" }] }
+    ],
+    "mood": 4,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-16",
+    "sleep": { "bedTime": "23:55", "wakeTime": "07:30", "durationMinutes": 455, "quality": 3 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Cornflakes", "amount": "1 bowl" }, { "name": "Milk", "amount": "1 cup" }] },
+      { "category": "lunch", "items": [{ "name": "Aloo gobi", "amount": "1 bowl" }, { "name": "Roti", "amount": "2" }] },
+      { "category": "junk_food", "items": [{ "name": "Chips", "amount": "1 small bag" }] },
+      { "category": "dinner", "items": [{ "name": "Khichdi", "amount": "1 bowl" }] }
+    ],
+    "mood": 3,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-17",
+    "sleep": { "bedTime": "22:50", "wakeTime": "06:20", "durationMinutes": 450, "quality": 5 },
+    "workouts": [
+      {
+        "timeOfDay": "morning",
+        "exercises": [
+          { "name": "Running", "type": "duration", "durationMinutes": 30 },
+          { "name": "Stretching", "type": "duration", "durationMinutes": 10 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Banana protein smoothie", "amount": "1 glass" }] },
+      { "category": "lunch", "items": [{ "name": "Palak paneer", "amount": "1 bowl" }, { "name": "Roti", "amount": "2" }] },
+      { "category": "snacks", "items": [{ "name": "Orange", "amount": "1" }] },
+      { "category": "dinner", "items": [{ "name": "Grilled chicken", "amount": "180g" }, { "name": "Quinoa", "amount": "1 cup" }] }
+    ],
+    "mood": 5,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-18",
+    "sleep": { "bedTime": "23:10", "wakeTime": "06:50", "durationMinutes": 460, "quality": 4 },
+    "workouts": [
+      {
+        "timeOfDay": "evening",
+        "exercises": [
+          { "name": "Leg press", "type": "sets_reps", "sets": 4, "reps": 10 },
+          { "name": "Romanian deadlift", "type": "sets_reps", "sets": 3, "reps": 8 },
+          { "name": "Leg curl", "type": "sets_reps", "sets": 3, "reps": 12 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Dosa", "amount": "2" }, { "name": "Coconut chutney", "amount": "1 bowl" }] },
+      { "category": "lunch", "items": [{ "name": "Chicken rice bowl", "amount": "1" }] },
+      { "category": "snacks", "items": [{ "name": "Roasted chana", "amount": "1 handful" }] },
+      { "category": "dinner", "items": [{ "name": "Vegetable soup", "amount": "1 bowl" }, { "name": "Brown bread", "amount": "2 slices" }] }
+    ],
+    "mood": 4,
+    "aiDailySuggestion": "[{\"category\":\"sleep\",\"suggestion\":\"Your sleep consistency is great this week.\"},{\"category\":\"workout\",\"suggestion\":\"Good lower body focus. Add hip flexor stretches post-session.\"},{\"category\":\"diet\",\"suggestion\":\"Excellent variety today. Maintain this balance.\"}]",
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-19",
+    "sleep": { "bedTime": "23:30", "wakeTime": "07:00", "durationMinutes": 450, "quality": 3 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Egg paratha", "amount": "1" }] },
+      { "category": "lunch", "items": [{ "name": "Sambar rice", "amount": "1 plate" }] },
+      { "category": "cheat_meal", "items": [{ "name": "Ice cream", "amount": "2 scoops" }] },
+      { "category": "dinner", "items": [{ "name": "Salad", "amount": "1 large bowl" }, { "name": "Grilled paneer", "amount": "100g" }] }
+    ],
+    "mood": 3,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-20",
+    "sleep": { "bedTime": "22:45", "wakeTime": "06:15", "durationMinutes": 450, "quality": 5 },
+    "workouts": [
+      {
+        "timeOfDay": "morning",
+        "exercises": [
+          { "name": "Push-ups", "type": "sets_reps", "sets": 4, "reps": 15 },
+          { "name": "Pike push-ups", "type": "sets_reps", "sets": 3, "reps": 10 },
+          { "name": "Diamond push-ups", "type": "sets_reps", "sets": 3, "reps": 8 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Oats with nuts", "amount": "1 bowl" }] },
+      { "category": "lunch", "items": [{ "name": "Dal fry", "amount": "1 bowl" }, { "name": "Jeera rice", "amount": "1 cup" }] },
+      { "category": "snacks", "items": [{ "name": "Banana", "amount": "1" }] },
+      { "category": "dinner", "items": [{ "name": "Chicken stir fry", "amount": "1 plate" }, { "name": "Brown rice", "amount": "1 cup" }] }
+    ],
+    "mood": 5,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-21",
+    "sleep": { "bedTime": "23:45", "wakeTime": "07:20", "durationMinutes": 455, "quality": 3 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Puri bhaji", "amount": "2 puris" }] },
+      { "category": "lunch", "items": [{ "name": "Mixed vegetable curry", "amount": "1 bowl" }, { "name": "Rice", "amount": "1 cup" }] },
+      { "category": "dinner", "items": [{ "name": "Soup and salad", "amount": "1 bowl each" }] }
+    ],
+    "mood": 3,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-22",
+    "sleep": { "bedTime": "23:00", "wakeTime": "06:40", "durationMinutes": 460, "quality": 4 },
+    "workouts": [
+      {
+        "timeOfDay": "evening",
+        "exercises": [
+          { "name": "Squat", "type": "sets_reps", "sets": 5, "reps": 5 },
+          { "name": "Leg extension", "type": "sets_reps", "sets": 3, "reps": 12 },
+          { "name": "Walking", "type": "duration", "durationMinutes": 20 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Protein shake", "amount": "1 serving" }, { "name": "Apple", "amount": "1" }] },
+      { "category": "lunch", "items": [{ "name": "Chole bhature", "amount": "1 plate" }] },
+      { "category": "dinner", "items": [{ "name": "Dal tadka", "amount": "1 bowl" }, { "name": "Roti", "amount": "2" }] }
+    ],
+    "mood": 4,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-23",
+    "sleep": { "bedTime": "00:15", "wakeTime": "07:45", "durationMinutes": 450, "quality": 2 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Toast with peanut butter", "amount": "2 slices" }] },
+      { "category": "junk_food", "items": [{ "name": "Momos", "amount": "8" }, { "name": "Red chutney", "amount": "2 tbsp" }] },
+      { "category": "dinner", "items": [{ "name": "Egg fried rice", "amount": "1 plate" }] }
+    ],
+    "mood": 2,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-24",
+    "sleep": { "bedTime": "22:55", "wakeTime": "06:30", "durationMinutes": 455, "quality": 5 },
+    "workouts": [
+      {
+        "timeOfDay": "morning",
+        "exercises": [
+          { "name": "Bench press", "type": "sets_reps", "sets": 4, "reps": 8 },
+          { "name": "Cable fly", "type": "sets_reps", "sets": 3, "reps": 12 },
+          { "name": "Dips", "type": "sets_reps", "sets": 3, "reps": 10 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Besan chilla", "amount": "2" }, { "name": "Green chutney", "amount": "1 tbsp" }] },
+      { "category": "lunch", "items": [{ "name": "Paneer butter masala", "amount": "1 bowl" }, { "name": "Naan", "amount": "1" }] },
+      { "category": "snacks", "items": [{ "name": "Protein bar", "amount": "1" }] },
+      { "category": "dinner", "items": [{ "name": "Sprout salad", "amount": "1 bowl" }, { "name": "Roti", "amount": "1" }] }
+    ],
+    "mood": 5,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-25",
+    "sleep": { "bedTime": "23:20", "wakeTime": "07:00", "durationMinutes": 460, "quality": 4 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Ragi porridge", "amount": "1 bowl" }] },
+      { "category": "lunch", "items": [{ "name": "Fish curry", "amount": "1 bowl" }, { "name": "Rice", "amount": "1 cup" }] },
+      { "category": "dinner", "items": [{ "name": "Grilled vegetables", "amount": "1 plate" }, { "name": "Hummus", "amount": "2 tbsp" }] }
+    ],
+    "mood": 4,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-26",
+    "sleep": { "bedTime": "23:00", "wakeTime": "06:45", "durationMinutes": 465, "quality": 4 },
+    "workouts": [
+      {
+        "timeOfDay": "evening",
+        "exercises": [
+          { "name": "Deadlift", "type": "sets_reps", "sets": 3, "reps": 5 },
+          { "name": "Single-leg deadlift", "type": "sets_reps", "sets": 3, "reps": 8 },
+          { "name": "Plank", "type": "duration", "durationMinutes": 5 },
+          { "name": "Side plank", "type": "duration", "durationMinutes": 3 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Vegetable omelette", "amount": "2 eggs" }, { "name": "Toast", "amount": "1 slice" }] },
+      { "category": "lunch", "items": [{ "name": "Chicken biryani", "amount": "1 plate" }] },
+      { "category": "snacks", "items": [{ "name": "Mango", "amount": "1 medium" }] },
+      { "category": "dinner", "items": [{ "name": "Grilled chicken", "amount": "200g" }, { "name": "Sweet potato", "amount": "1 medium" }] }
+    ],
+    "mood": 4,
+    "aiDailySuggestion": "[{\"category\":\"sleep\",\"suggestion\":\"Great sleep this week. Your recovery looks solid.\"},{\"category\":\"workout\",\"suggestion\":\"Excellent pull strength day. Focus on posterior chain mobility.\"},{\"category\":\"diet\",\"suggestion\":\"Strong macro balance. Keep prioritizing whole food sources.\"}]",
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-27",
+    "sleep": { "bedTime": "23:40", "wakeTime": "07:15", "durationMinutes": 455, "quality": 3 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Masala chai", "amount": "1 cup" }, { "name": "Biscuits", "amount": "4" }] },
+      { "category": "cheat_meal", "items": [{ "name": "Chole bhature", "amount": "2 bhature" }] },
+      { "category": "dinner", "items": [{ "name": "Dal soup", "amount": "1 bowl" }, { "name": "Roti", "amount": "2" }] }
+    ],
+    "mood": 3,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-28",
+    "sleep": { "bedTime": "22:50", "wakeTime": "06:25", "durationMinutes": 455, "quality": 5 },
+    "workouts": [
+      {
+        "timeOfDay": "morning",
+        "exercises": [
+          { "name": "Cycling", "type": "duration", "durationMinutes": 45 }
+        ]
+      },
+      {
+        "timeOfDay": "evening",
+        "exercises": [
+          { "name": "Shoulder press", "type": "sets_reps", "sets": 4, "reps": 8 },
+          { "name": "Lateral raises", "type": "sets_reps", "sets": 3, "reps": 15 },
+          { "name": "Arnold press", "type": "sets_reps", "sets": 3, "reps": 10 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Banana and peanut butter toast", "amount": "2 slices" }] },
+      { "category": "lunch", "items": [{ "name": "Tuna rice bowl", "amount": "1" }] },
+      { "category": "snacks", "items": [{ "name": "Greek yogurt", "amount": "1 cup" }] },
+      { "category": "dinner", "items": [{ "name": "Stir-fried tofu and vegetables", "amount": "1 plate" }, { "name": "Brown rice", "amount": "1 cup" }] }
+    ],
+    "mood": 5,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-29",
+    "sleep": { "bedTime": "23:15", "wakeTime": "06:55", "durationMinutes": 460, "quality": 4 },
+    "workouts": [],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Idli sambhar", "amount": "3 idlis" }] },
+      { "category": "lunch", "items": [{ "name": "Kadai paneer", "amount": "1 bowl" }, { "name": "Roti", "amount": "2" }] },
+      { "category": "snacks", "items": [{ "name": "Dates", "amount": "4" }] },
+      { "category": "dinner", "items": [{ "name": "Egg white omelette", "amount": "4 eggs" }, { "name": "Salad", "amount": "1 bowl" }] }
+    ],
+    "mood": 4,
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  },
+  {
+    "userId": "000000000000000000000001",
+    "date": "2026-06-30",
+    "sleep": { "bedTime": "23:05", "wakeTime": "06:40", "durationMinutes": 455, "quality": 4 },
+    "workouts": [
+      {
+        "timeOfDay": "evening",
+        "exercises": [
+          { "name": "Squat", "type": "sets_reps", "sets": 4, "reps": 8 },
+          { "name": "Deadlift", "type": "sets_reps", "sets": 3, "reps": 5 },
+          { "name": "Pull-ups", "type": "sets_reps", "sets": 3, "reps": 8 },
+          { "name": "Push-ups", "type": "sets_reps", "sets": 3, "reps": 15 }
+        ]
+      }
+    ],
+    "meals": [
+      { "category": "breakfast", "items": [{ "name": "Oats with berries", "amount": "1 bowl" }, { "name": "Protein shake", "amount": "1 scoop" }] },
+      { "category": "lunch", "items": [{ "name": "Chicken wrap", "amount": "1 large" }] },
+      { "category": "snacks", "items": [{ "name": "Mixed nuts and seeds", "amount": "1 handful" }] },
+      { "category": "dinner", "items": [{ "name": "Dal makhani", "amount": "1 bowl" }, { "name": "Brown rice", "amount": "1 cup" }, { "name": "Salad", "amount": "1 bowl" }] }
+    ],
+    "mood": 5,
+    "aiDailySuggestion": "[{\"category\":\"sleep\",\"suggestion\":\"Excellent month of sleep. Keep the consistency going into July.\"},{\"category\":\"workout\",\"suggestion\":\"Strong full-body finish to the month. Consider a deload week.\"},{\"category\":\"diet\",\"suggestion\":\"Well-rounded nutrition all month. Great foundation for next phase.\"}]",
+    "phaseSnapshot": { "primaryGoal": "maintaining", "lifeContext": "working_professional" }
+  }
+]

@@ -20,11 +20,20 @@ export const getProfile = async (req, res, next) => {
 // PUT /api/profile/update — update basic profile info
 export const updateProfile = async (req, res, next) => {
   try {
-    const { name, age, weight, height, goals } = req.body;
+    const { name, age, weight, height, goals, gender, activeSleepSession } = req.body;
+
+    const updateFields = {};
+    if (name !== undefined) updateFields.name = name;
+    if (age !== undefined) updateFields.age = age;
+    if (weight !== undefined) updateFields.weight = weight;
+    if (height !== undefined) updateFields.height = height;
+    if (goals !== undefined) updateFields.goals = goals;
+    if (gender !== undefined) updateFields.gender = gender;
+    if (activeSleepSession !== undefined) updateFields.activeSleepSession = activeSleepSession;
 
     const updated = await User.findByIdAndUpdate(
       req.userId,
-      { name, age, weight, height, goals },
+      updateFields,
       { new: true, runValidators: true },
     ).select("-password");
 
@@ -75,7 +84,7 @@ export const updatePhase = async (req, res, next) => {
     const updatedUser = await User.findByIdAndUpdate(
       req.userId,
       { currentPhase: { primaryGoal, lifeContext } },
-      { new: true },
+      { new: true, runValidators: true },
     ).select("-password");
 
     res.status(200).json({

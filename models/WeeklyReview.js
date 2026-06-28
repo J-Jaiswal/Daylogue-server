@@ -17,7 +17,7 @@ const weeklyReviewSchema = new mongoose.Schema(
       totalWorkoutSessions: Number,
       junkFoodCount: Number,
       cheatMealCount: Number,
-      moodAvg: Number,
+      avgMood: Number,
     },
 
     phaseSnapshot: {

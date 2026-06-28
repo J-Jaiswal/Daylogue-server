@@ -12,8 +12,11 @@ import {
   buildDailyPrompt,
   buildWeeklyReviewPrompt,
   buildChatPrompt,
+  buildBaseSystemPrompt,
+  buildUserProfileBlock,
+  build14DayLogsBlock,
 } from "../utils/promptBuilder.js";
-import { getTodayString, getWeekStartString } from "../utils/dateUtils.js";
+import { getTodayString, getWeekStartString, toLocalDateString } from "../utils/dateUtils.js";
 
 // ── Daily Suggestion Cards ─────────────────────────────────────────────────
 
@@ -31,34 +34,27 @@ export const getDailySuggestions = async (userId) => {
   // get yesterday's log
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayStr = yesterday.toISOString().split("T")[0];
+  const yesterdayStr = toLocalDateString(yesterday);
   const yesterdayLog = await DailyLog.findOne({ userId, date: yesterdayStr });
 
   // get last 7 days summary
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-  const startStr = sevenDaysAgo.toISOString().split("T")[0];
+  const startStr = toLocalDateString(sevenDaysAgo);
   const recentLogs = await DailyLog.find({
     userId,
     date: { $gte: startStr, $lte: yesterdayStr },
   });
 
   const totalDays = recentLogs.length;
-  const sleepLogs = recentLogs.filter((l) => l.sleep?.durationMinutes);
+  const sleepLogs = recentLogs.filter((l) => l.sleep?.duration);
   const avgSleepMinutes = sleepLogs.length
     ? Math.round(
-        sleepLogs.reduce((s, l) => s + l.sleep.durationMinutes, 0) /
+        sleepLogs.reduce((s, l) => s + l.sleep.duration, 0) /
           sleepLogs.length,
       )
     : null;
-  const avgSleepQuality = sleepLogs.length
-    ? parseFloat(
-        (
-          sleepLogs.reduce((s, l) => s + (l.sleep.quality || 0), 0) /
-          sleepLogs.length
-        ).toFixed(1),
-      )
-    : null;
+  const avgSleepQuality = null;
   const totalWorkoutSessions = recentLogs.reduce(
     (s, l) => s + (l.workouts?.length || 0),
     0,
@@ -92,7 +88,7 @@ export const getDailySuggestions = async (userId) => {
   const userPrompt = buildDailyPrompt(yesterdayText, statsBlock);
 
   const response = await getGroqClient().chat.completions.create({
-    model: "llama-3.1-8b-instant",
+    model: "llama-3.3-70b-versatile",
     messages: [
       { role: "system", content: systemPrompt },
       { role: "user", content: userPrompt },
@@ -113,10 +109,18 @@ export const getDailySuggestions = async (userId) => {
   }
 
   // store on today's log so we don't regenerate
-  if (todayLog) {
-    todayLog.aiDailySuggestion = JSON.stringify(suggestions);
-    await todayLog.save();
-  }
+  await DailyLog.findOneAndUpdate(
+    { userId, date: today },
+    {
+      $set: { aiDailySuggestion: JSON.stringify(suggestions) },
+      $setOnInsert: {
+        workouts: [],
+        meals: [],
+        phaseSnapshot: user?.currentPhase
+      }
+    },
+    { upsert: true, setDefaultsOnInsert: true }
+  );
 
   return suggestions;
 };
@@ -149,32 +153,25 @@ export const getWeeklyReview = async (userId) => {
   const prevWeekLogs = await DailyLog.find({
     userId,
     date: {
-      $gte: prevWeekStart.toISOString().split("T")[0],
-      $lte: prevWeekEnd.toISOString().split("T")[0],
+      $gte: toLocalDateString(prevWeekStart),
+      $lte: toLocalDateString(prevWeekEnd),
     },
   }).sort({ date: 1 });
 
   const buildWeekStats = (logs) => {
     if (!logs.length) return null;
-    const sleepLogs = logs.filter((l) => l.sleep?.durationMinutes);
+    const sleepLogs = logs.filter((l) => l.sleep?.duration);
     const allMeals = logs.flatMap((l) => l.meals || []);
     const moodLogs = logs.filter((l) => l.mood);
     return {
       totalDays: logs.length,
       avgSleepMinutes: sleepLogs.length
         ? Math.round(
-            sleepLogs.reduce((s, l) => s + l.sleep.durationMinutes, 0) /
+            sleepLogs.reduce((s, l) => s + l.sleep.duration, 0) /
               sleepLogs.length,
           )
         : null,
-      avgSleepQuality: sleepLogs.length
-        ? parseFloat(
-            (
-              sleepLogs.reduce((s, l) => s + (l.sleep.quality || 0), 0) /
-              sleepLogs.length
-            ).toFixed(1),
-          )
-        : null,
+      avgSleepQuality: null,
       totalWorkoutSessions: logs.reduce(
         (s, l) => s + (l.workouts?.length || 0),
         0,
@@ -239,70 +236,35 @@ export const chatWithAI = async (
 ) => {
   const user = await User.findById(userId).select("-password");
 
-  // get last 14 days of logs for context
+  // get last 14 days of logs for context (sort chronologically to show daily progression)
   const fourteenDaysAgo = new Date();
   fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
-  const startStr = fourteenDaysAgo.toISOString().split("T")[0];
+  const startStr = toLocalDateString(fourteenDaysAgo);
   const endStr = getTodayString();
 
   const recentLogs = await DailyLog.find({
     userId,
     date: { $gte: startStr, $lte: endStr },
-  }).sort({ date: -1 });
+  }).sort({ date: 1 }); // chronological order is better for history progression
 
-  const recentLogsBlock = summarizeWeekLogs(recentLogs);
+  const systemPrompt = buildBaseSystemPrompt();
+  const profileBlock = buildUserProfileBlock(user);
+  const logsBlock = build14DayLogsBlock(recentLogs);
 
-  const sleepLogs = recentLogs.filter((l) => l.sleep?.durationMinutes);
-  const allMeals = recentLogs.flatMap((l) => l.meals || []);
-  const moodLogs = recentLogs.filter((l) => l.mood);
-
-  const statsBlock = buildStatsBlock({
-    totalDays: recentLogs.length,
-    avgSleepMinutes: sleepLogs.length
-      ? Math.round(
-          sleepLogs.reduce((s, l) => s + l.sleep.durationMinutes, 0) /
-            sleepLogs.length,
-        )
-      : null,
-    avgSleepQuality: sleepLogs.length
-      ? parseFloat(
-          (
-            sleepLogs.reduce((s, l) => s + (l.sleep.quality || 0), 0) /
-            sleepLogs.length
-          ).toFixed(1),
-        )
-      : null,
-    totalWorkoutSessions: recentLogs.reduce(
-      (s, l) => s + (l.workouts?.length || 0),
-      0,
-    ),
-    junkFoodCount: allMeals.filter((m) => m.category === "junk_food").length,
-    cheatMealCount: allMeals.filter((m) => m.category === "cheat_meal").length,
-    avgMood: moodLogs.length
-      ? parseFloat(
-          (moodLogs.reduce((s, l) => s + l.mood, 0) / moodLogs.length).toFixed(
-            1,
-          ),
-        )
-      : null,
-  });
-
-  const systemPrompt = buildSystemPrompt(user);
-  const contextPrompt = buildChatPrompt(
-    userMessage,
-    recentLogsBlock,
-    statsBlock,
-  );
-
-  // keep last 8 messages of conversation history to stay within token limits
-  const trimmedHistory = conversationHistory.slice(-8);
+  // keep last 6 messages of conversation history (representing last 3 conversations)
+  const trimmedHistory = conversationHistory.slice(-6).map(({ role, content }) => ({
+    role,
+    content,
+  }));
 
   const response = await getGroqClient().chat.completions.create({
-    model: "llama-3.1-8b-instant",
+    model: "llama-3.3-70b-versatile",
     messages: [
       { role: "system", content: systemPrompt },
+      { role: "system", content: `USER PROFILE:\n${profileBlock}` },
+      { role: "system", content: `Structured Last 14 Days Activity Logs:\n${logsBlock}` },
       ...trimmedHistory,
-      { role: "user", content: contextPrompt },
+      { role: "user", content: userMessage }
     ],
     temperature: 0.7,
     max_tokens: 600,

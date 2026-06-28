@@ -1,6 +1,14 @@
+export const toLocalDateString = (d = new Date()) => {
+  const dateObj = new Date(d);
+  const year = dateObj.getFullYear();
+  const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const day = String(dateObj.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
 // returns today as "YYYY-MM-DD"
 export const getTodayString = () => {
-  return new Date().toISOString().split("T")[0];
+  return toLocalDateString(new Date());
 };
 
 // calculates sleep duration in minutes handling midnight crossover
@@ -26,7 +34,7 @@ export const getWeekStartString = (date = new Date()) => {
   const day = d.getDay(); // 0 = Sunday
   const diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust to Monday
   d.setDate(diff);
-  return d.toISOString().split("T")[0];
+  return toLocalDateString(d);
 };
 
 // formats minutes into "Xh Ym"

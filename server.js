@@ -1,16 +1,23 @@
+import "./env.js";
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
+import dns from "dns";
 import { connectDB } from "./config/db.js";
+
+// Override fallback DNS if Node is stuck on localhost/loopback resolver
+if (dns.getServers().some(s => s.startsWith("127.0.0.1") || s === "localhost" || s === "::1")) {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+}
 
 import authRoutes from "./routes/authRoutes.js";
 import logRoutes from "./routes/logRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
+import sleepRoutes from "./routes/sleepRoutes.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
-dotenv.config();
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,6 +33,11 @@ const services = {
     error: process.env.JWT_SECRET ? null : "JWT_SECRET is missing",
   },
 };
+
+const isValidMongoUri = (uri) =>
+  uri?.startsWith("mongodb://") || uri?.startsWith("mongodb+srv://");
+
+const hasPlaceholderToken = (value) => /<[^>]+>/.test(value || "");
 
 const requireDatabase = (req, res, next) => {
   if (services.database.connected && mongoose.connection.readyState === 1) {
@@ -127,6 +139,7 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", requireJwtSecret, requireDatabase, authRoutes);
 app.use("/api/logs", requireJwtSecret, requireDatabase, logRoutes);
 app.use("/api/profile", requireJwtSecret, requireDatabase, profileRoutes);
+app.use("/api/sleep", requireJwtSecret, requireDatabase, sleepRoutes);
 app.use("/api/ai", requireJwtSecret, requireDatabase, requireGroq, aiRoutes);
 
 app.use(serviceErrorHandler);
@@ -135,6 +148,12 @@ app.use(errorHandler);
 const startServer = async () => {
   if (!process.env.MONGO_URI) {
     services.database.error = "MONGO_URI is missing";
+  } else if (!isValidMongoUri(process.env.MONGO_URI)) {
+    services.database.error =
+      'MONGO_URI must start with "mongodb://" or "mongodb+srv://"';
+  } else if (hasPlaceholderToken(process.env.MONGO_URI)) {
+    services.database.error =
+      "MONGO_URI still contains placeholder values like <username>, <password>, or <cluster-url>";
   } else {
     try {
       await connectDB();

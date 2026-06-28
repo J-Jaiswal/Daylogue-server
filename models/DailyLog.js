@@ -42,6 +42,13 @@ const mealSchema = new mongoose.Schema(
         "snacks",
         "junk_food",
         "cheat_meal",
+        "water",
+        "coffee",
+        "tea",
+        "juice",
+        "protein_shake",
+        "alcohol",
+        "soda",
       ],
       required: true,
     },
@@ -60,14 +67,28 @@ const dailyLogSchema = new mongoose.Schema(
     date: { type: String, required: true }, // stored as "YYYY-MM-DD"
 
     sleep: {
-      bedTime: String, // "23:30"
-      wakeTime: String, // "06:30"
-      durationMinutes: Number,
-      quality: { type: Number, min: 1, max: 5 },
+      fellAsleepDate:  { type: String, default: null },
+      fellAsleepTime:  { type: Date, default: null },
+      wokeUpDate:      { type: String, default: null },
+      wokeUpTime:      { type: Date, default: null },
+      duration:        { type: Number, default: null },
+      crossesMidnight: { type: Boolean, default: false }
     },
 
     workouts: [workoutSessionSchema],
     meals: [mealSchema],
+    naps: [
+      {
+        startTime: { type: Date, required: true },
+        endTime:   { type: Date, required: true },
+        duration:  { type: Number, required: true },
+        timeOfDay: {
+          type: String,
+          enum: ["morning", "afternoon", "evening"],
+          required: true
+        }
+      }
+    ],
 
     mood: { type: Number, min: 1, max: 5 },
 

@@ -6,7 +6,7 @@ import { calculateSleepDuration, getTodayString } from "../utils/dateUtils.js";
 export const upsertLog = async (req, res, next) => {
   try {
     const userId = req.userId;
-    const { date, sleep, workouts, meals, mood } = req.body;
+    const { date, sleep, workouts, meals, mood, naps } = req.body;
 
     const logDate = date || getTodayString();
 
@@ -14,23 +14,18 @@ export const upsertLog = async (req, res, next) => {
     const user = await User.findById(userId).select("currentPhase");
     const phaseSnapshot = user.currentPhase;
 
-    // calculate sleep duration if bedTime and wakeTime provided
+    // sleep data is passed through directly from front-end
     let sleepData = sleep;
-    if (sleep?.bedTime && sleep?.wakeTime) {
-      sleepData = {
-        ...sleep,
-        durationMinutes: calculateSleepDuration(sleep.bedTime, sleep.wakeTime),
-      };
-    }
 
     const existing = await DailyLog.findOne({ userId, date: logDate });
 
     if (existing) {
-      // patch — only update fields that were sent
-      if (sleepData) existing.sleep = sleepData;
-      if (workouts) existing.workouts = workouts;
-      if (meals) existing.meals = meals;
-      if (mood) existing.mood = mood;
+      // patch — only update fields that were sent in the request body
+      if (req.body.hasOwnProperty("sleep")) existing.sleep = sleep;
+      if (req.body.hasOwnProperty("workouts")) existing.workouts = workouts;
+      if (req.body.hasOwnProperty("meals")) existing.meals = meals;
+      if (req.body.hasOwnProperty("mood")) existing.mood = mood;
+      if (req.body.hasOwnProperty("naps")) existing.naps = naps;
       existing.phaseSnapshot = phaseSnapshot;
 
       await existing.save();
@@ -43,6 +38,7 @@ export const upsertLog = async (req, res, next) => {
       sleep: sleepData,
       workouts: workouts || [],
       meals: meals || [],
+      naps: naps || [],
       mood,
       phaseSnapshot,
     });
@@ -140,21 +136,12 @@ export const getRecentSummary = async (req, res, next) => {
     // aggregate stats
     const totalDays = logs.length;
 
-    const sleepLogs = logs.filter((l) => l.sleep?.durationMinutes);
+    const sleepLogs = logs.filter((l) => l.sleep?.duration);
     const avgSleepMinutes = sleepLogs.length
       ? Math.round(
-          sleepLogs.reduce((sum, l) => sum + l.sleep.durationMinutes, 0) /
-            sleepLogs.length,
-        )
-      : null;
-
-    const avgSleepQuality = sleepLogs.length
-      ? parseFloat(
-          (
-            sleepLogs.reduce((sum, l) => sum + (l.sleep.quality || 0), 0) /
-            sleepLogs.length
-          ).toFixed(1),
-        )
+        sleepLogs.reduce((sum, l) => sum + l.sleep.duration, 0) /
+        sleepLogs.length,
+      )
       : null;
 
     const totalWorkoutSessions = logs.reduce(
@@ -173,10 +160,10 @@ export const getRecentSummary = async (req, res, next) => {
     const moodLogs = logs.filter((l) => l.mood);
     const avgMood = moodLogs.length
       ? parseFloat(
-          (
-            moodLogs.reduce((sum, l) => sum + l.mood, 0) / moodLogs.length
-          ).toFixed(1),
-        )
+        (
+          moodLogs.reduce((sum, l) => sum + l.mood, 0) / moodLogs.length
+        ).toFixed(1),
+      )
       : null;
 
     res.status(200).json({
@@ -185,7 +172,6 @@ export const getRecentSummary = async (req, res, next) => {
         totalDays,
         dateRange: { start, end },
         avgSleepMinutes,
-        avgSleepQuality,
         totalWorkoutSessions,
         junkFoodCount,
         cheatMealCount,

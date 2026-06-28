@@ -14,11 +14,11 @@ const phaseSchema = new mongoose.Schema(
     },
     lifeContext: {
       type: String,
-      enum: ["job_seeker", "working_professional", "student", "off_season"],
+      enum: ["job_seeker", "working_professional", "student", "off_season", "new_parent", "traveling"],
       required: true,
     },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, default: null }, // null means currently active
+    startDate: { type: String, required: true },
+    endDate: { type: String, default: null }, // null means currently active
     notes: { type: String, default: "" },
   },
   { timestamps: true },

@@ -3,6 +3,8 @@ import {
   getWeeklyReview,
   chatWithAI,
 } from "../services/aiService.js";
+import WeeklyReview from "../models/WeeklyReview.js";
+import { getWeekStartString } from "../utils/dateUtils.js";
 
 export const dailySuggestions = async (req, res, next) => {
   try {
@@ -17,6 +19,16 @@ export const weeklyReview = async (req, res, next) => {
   try {
     const review = await getWeeklyReview(req.userId);
     res.status(200).json({ success: true, review });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteWeeklyReview = async (req, res, next) => {
+  try {
+    const weekStart = getWeekStartString();
+    await WeeklyReview.findOneAndDelete({ userId: req.userId, weekStartDate: weekStart });
+    res.status(200).json({ success: true, message: "Weekly review cache cleared" });
   } catch (err) {
     next(err);
   }

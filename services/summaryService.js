@@ -10,11 +10,18 @@ export const summarizeDailyLog = (log) => {
   lines.push(`Date: ${log.date}`);
 
   // sleep
-  if (log.sleep?.bedTime && log.sleep?.wakeTime) {
-    const duration = formatSleepDuration(log.sleep.durationMinutes);
-    const quality = log.sleep.quality ? `, quality ${log.sleep.quality}/5` : "";
+  if (log.sleep?.fellAsleepTime && log.sleep?.wokeUpTime) {
+    const duration = formatSleepDuration(log.sleep.duration);
+    const formatTime = (timeStr) => {
+      const d = new Date(timeStr);
+      let h = d.getHours();
+      const m = String(d.getMinutes()).padStart(2, "0");
+      const ampm = h >= 12 ? "PM" : "AM";
+      h = h % 12 || 12;
+      return `${h}:${m} ${ampm}`;
+    };
     lines.push(
-      `Sleep: bed at ${log.sleep.bedTime}, woke at ${log.sleep.wakeTime}, ${duration}${quality}`,
+      `Sleep: slept at ${formatTime(log.sleep.fellAsleepTime)}, woke at ${formatTime(log.sleep.wokeUpTime)}, duration: ${duration}`,
     );
   } else {
     lines.push("Sleep: not logged");
@@ -70,7 +77,7 @@ export const buildStatsBlock = (summary) => {
 
   return [
     `Last ${summary.totalDays} days summary:`,
-    `- Avg sleep: ${sleep} (quality: ${summary.avgSleepQuality ?? "N/A"}/5)`,
+    `- Avg sleep: ${sleep}`,
     `- Total workout sessions: ${summary.totalWorkoutSessions}`,
     `- Junk food entries: ${summary.junkFoodCount}`,
     `- Cheat meals: ${summary.cheatMealCount}`,
@@ -79,4 +86,4 @@ export const buildStatsBlock = (summary) => {
 };
 
 const capitalize = (str) =>
-  str.charAt(0).toUpperCase() + str.slice(1).replace("_", " ");
+  str.charAt(0).toUpperCase() + str.slice(1).replace(/_/g, " ");
