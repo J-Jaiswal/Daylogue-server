@@ -52,7 +52,10 @@ export const buildUserProfileBlock = (user) => {
 
   return `User Profile Context:
 - Name: ${user.name}
+- Age: ${user.age ? user.age + " years old" : "Not specified"}
 - Gender: ${genderText}
+- Weight: ${user.weight ? user.weight + " kg" : "Not specified"}
+- Height: ${user.height ? user.height + " cm" : "Not specified"}
 - Target Goal: Focused on ${goalText}
 - Life Phase/Context: ${contextText}
 ${user.goals ? `- Personal Target Statement: "${user.goals}"` : ""}`;

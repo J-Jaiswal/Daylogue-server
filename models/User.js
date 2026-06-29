@@ -16,12 +16,10 @@ const userSchema = new mongoose.Schema(
     currentPhase: {
       primaryGoal: {
         type: String,
-        enum: ["building", "maintaining", "fat_loss", "competition_prep"],
         default: "maintaining",
       },
       lifeContext: {
         type: String,
-        enum: ["job_seeker", "working_professional", "student", "off_season", "new_parent", "traveling"],
         default: "working_professional",
       },
     },
