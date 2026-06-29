@@ -46,7 +46,10 @@ export const summarizeDailyLog = (log) => {
   // meals
   if (log.meals?.length) {
     log.meals.forEach((meal) => {
-      const items = meal.items.map((i) => `${i.amount} ${i.name}`).join(", ");
+      const items = meal.items.map((i) => {
+        const suffix = i.times && i.times > 1 ? ` (x${i.times})` : "";
+        return `${i.amount} ${i.name}${suffix}`;
+      }).join(", ");
       lines.push(`${capitalize(meal.category)}: ${items}`);
     });
   } else {

@@ -27,6 +27,7 @@ const mealItemSchema = new mongoose.Schema(
   {
     name: { type: String, required: true }, // "Chicken"
     amount: { type: String, required: true }, // "300g" or "2 pieces"
+    times: { type: Number, default: 1 }, // Only used for drinks, defaults to 1
   },
   { _id: false },
 );
@@ -49,6 +50,7 @@ const mealSchema = new mongoose.Schema(
         "protein_shake",
         "alcohol",
         "soda",
+        "custom",
       ],
       required: true,
     },

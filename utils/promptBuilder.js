@@ -132,7 +132,10 @@ export const build14DayLogsBlock = (logs) => {
       // Nutrition
       if (log.meals && log.meals.length > 0) {
         const mealsLines = log.meals.map((meal) => {
-          const items = meal.items.map((i) => `${i.amount} ${i.name}`).join(", ");
+          const items = meal.items.map((i) => {
+            const suffix = i.times && i.times > 1 ? ` (x${i.times})` : "";
+            return `${i.amount} ${i.name}${suffix}`;
+          }).join(", ");
           return `${capitalize(meal.category)}: ${items}`;
         });
         parts.push(`- Nutrition:\n  ` + mealsLines.join("\n  "));
