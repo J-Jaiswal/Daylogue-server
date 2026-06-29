@@ -123,6 +123,13 @@ const serviceErrorHandler = (err, req, res, next) => {
 
 app.use(cors({ origin: process.env.CLIENT_URL }));
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Daylogue API Server is running",
+    healthCheck: "/health"
+  });
+});
 
 app.get("/health", (req, res) => {
   const healthy =
@@ -135,6 +142,7 @@ app.get("/health", (req, res) => {
     services,
   });
 });
+
 
 app.use("/api/auth", requireJwtSecret, requireDatabase, authRoutes);
 app.use("/api/logs", requireJwtSecret, requireDatabase, logRoutes);
