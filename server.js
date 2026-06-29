@@ -39,20 +39,23 @@ const isValidMongoUri = (uri) =>
 
 const hasPlaceholderToken = (value) => /<[^>]+>/.test(value || "");
 
-const requireDatabase = (req, res, next) => {
-  if (services.database.connected && mongoose.connection.readyState === 1) {
+const requireDatabase = async (req, res, next) => {
+  try {
+    await connectDB();
+    services.database.connected = true;
+    services.database.error = null;
     return next();
+  } catch (err) {
+    services.database.connected = false;
+    services.database.error = err.message || "MongoDB connection failed";
+
+    return res.status(503).json({
+      success: false,
+      message: "Database service is not connected",
+      service: "database",
+      details: services.database.error,
+    });
   }
-
-  services.database.connected = false;
-  services.database.error ||= "MongoDB connection is not ready";
-
-  return res.status(503).json({
-    success: false,
-    message: "Database service is not connected",
-    service: "database",
-    details: services.database.error,
-  });
 };
 
 const requireGroq = (req, res, next) => {
@@ -164,7 +167,21 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/health", (req, res) => {
+app.get("/health", async (req, res) => {
+  if (!process.env.MONGO_URI) {
+    services.database.connected = false;
+    services.database.error = "MONGO_URI is missing";
+  } else {
+    try {
+      await connectDB();
+      services.database.connected = true;
+      services.database.error = null;
+    } catch (err) {
+      services.database.connected = false;
+      services.database.error = err.message;
+    }
+  }
+
   const healthy =
     services.database.connected &&
     services.groq.configured &&
