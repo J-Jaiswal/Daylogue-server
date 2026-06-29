@@ -121,7 +121,40 @@ const serviceErrorHandler = (err, req, res, next) => {
   next(err);
 };
 
-app.use(cors({ origin: process.env.CLIENT_URL }));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://daylogue-client.vercel.app"
+];
+
+if (process.env.CLIENT_URL) {
+  const urls = process.env.CLIENT_URL.split(",").map(url => url.trim());
+  for (const url of urls) {
+    if (url && !allowedOrigins.includes(url)) {
+      allowedOrigins.push(url);
+    }
+  }
+}
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, postman, server-to-server)
+      if (!origin) return callback(null, true);
+      
+      const isAllowed = allowedOrigins.includes(origin) || 
+                        origin.endsWith(".vercel.app") || 
+                        /^https?:\/\/localhost(:\d+)?$/.test(origin);
+                        
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(null, false);
+      }
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.get("/", (req, res) => {
   res.json({
